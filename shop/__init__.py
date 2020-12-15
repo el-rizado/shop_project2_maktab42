@@ -31,7 +31,7 @@ def create_app(test_config=None):
 
     @app.route("/hello")
     def hello():
-        return "Hello, World!"
+        return render_template('./management/Inventory&price.html')
 
     @app.route("/index")
     def index():

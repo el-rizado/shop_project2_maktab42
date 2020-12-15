@@ -1,0 +1,62 @@
+{% extends './management/base.html' %}
+<title>{% block title %}سفارش ها{% endblock %}</title>
+
+{% block page_css_link %}
+    <link rel="stylesheet" href="../../static/management/orders.css">
+{% endblock %}
+
+
+{% block IP_btn %}
+    <button
+            type="button"
+            class="btn btn-outline-secondary bg-dark  text-white"
+    >
+        موجودی و قیمت ها
+    </button>
+{% endblock %}
+
+{% block content %}
+    <section>
+        <!--for demo wrap-->
+        <div class="onvan">
+            <h1>مدیریت موجودی ها و قیمت ها</h1>
+            <button type="button" id="mojodi" class="btn btn-success">افزودن موجودی</button>
+
+        </div>
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>موجودی</th>
+                    <th>قیمت</th>
+                    <th>کالا</th>
+                    <th>انبار</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <!-- follow me template -->
+    <div class="made-with-love">
+        Made with
+        <i>♥</i> by
+        <a target="_blank" href="https://codepen.io/nikhil8krishnan">Nikhil Krishnan</a>
+    </div>
+
+{% endblock %}

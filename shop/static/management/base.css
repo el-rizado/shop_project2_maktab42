@@ -11,22 +11,26 @@ img{
 }
 #nav-item{
     width: 100%;
+    height: inherit;
     position: relative;
     display: flex;
     justify-content: space-around;
 }
 .nav_h {
-    width: 400px;
-    margin-right: 20px;
+    width: 300px;
+	height: inherit;
+	transform: skew(-20deg);
+    padding-top: 50px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 28px;
 }
 #mysvg {
-    margin: 0 40px;
+    margin-top: 50px;
 }
 #navbarTogglerDemo02 {
-    margin-left: 100px;
+    margin-top: 50px;
     opacity: 1;
 }
 
-button:hover {
-    color: red;
-}
+

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
     <title>{% block title %}{% endblock %} - مدیریت</title>
     <meta charset="utf-8" />
@@ -10,6 +10,7 @@
         crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../../static/management/base.css" />
+    {% block page_css_link %}{% endblock %}
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -37,19 +38,23 @@
                 />
             </svg>
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <button
-                    type="button"
-                    class="btn btn-outline-secondary bg-secondary text-white"
-                >
-                    سفارش ها
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-outline-secondary bg-secondary text-white"
-                >
-                    موجودی و قیمت ها
-                </button>
+            <div id="navbarTogglerDemo02" class="btns">
+                {% block orders_btn %}
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary bg-secondary text-white"
+                    >
+                        سفارش ها
+                    </button>
+                {% endblock %}
+                {% block IP_btn %}
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary bg-secondary text-white"
+                    >
+                        موجودی و قیمت ها
+                    </button>
+                {% endblock %}
                 <button
                     type="button"
                     class="btn btn-outline-secondary bg-secondary text-white"
@@ -63,9 +68,13 @@
                     کالاها
                 </button>
             </div>
-            <div class="nav_h">
-                <h2>پنل مدیریت فروشگاه</h2>
+            <div class="nav_h text-light bg-secondary">
+                پنل مدیریت فروشگاه
             </div>
         </div>
     </nav>
+
+    {% block content %}{% endblock %}
+
 </body>
+</html>
