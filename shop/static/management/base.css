@@ -1,7 +1,22 @@
 nav{
-    display: flex;
-    flex-direction: row;
+    height: 150px;
+
+background-image: url('./75843828-set-of-icons-for-online-shop-seamless-background-.jpg');
+    background;
 }
-h1{
+.nav_h{
+    width: 400px;
+    margin-right: 20px;
+}
+#mysvg{
+    margin: 0 40px;
+}
+#navbarTogglerDemo02{
+    margin-left:100px ;
+    opacity: 1;
+}
+
+button:hover{
+    color:red;
 
 }
