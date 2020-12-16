@@ -2,59 +2,49 @@
 <title>{% block title %}انبار ها{% endblock %}</title>
 
 {% block page_css_link %}
-    <link rel="stylesheet" href="../../static/management/stores.css">
-{% endblock %}
+<link rel="stylesheet" href="../../static/management/stores.css" />
+{% endblock %} {% block store_btn %}
+<button type="button" class="btn btn-outline-secondary bg-dark text-white">
+    انبار
+</button>
+{% endblock %} {% block content %}
+<section>
+    <!--for demo wrap-->
+    <div class="onvan">
+        <h1>مدیریت انبارها</h1>
+        <button type="button" id="mojodi" class="btn btn-success">
+            افزودن انبار
+        </button>
+    </div>
 
-
-{% block store_btn %}
-    <button
-            type="button"
-            class="btn btn-outline-secondary bg-dark  text-white"
-    >
-         انبار
-    </button>
-{% endblock %}
-
-{% block content %}
-    <section>
-        <!--for demo wrap-->
-        <div class="onvan">
-            <h1>مدیریت انبار ها</h1>
-            <button type="button" id="mojodi" class="btn btn-success">افزودن انبار</button>
-
-        </div>
-
-        <div class="mytable">
-            <div class="tbl-header">
-                <table cellpadding="0" cellspacing="0" border="0">
-                    <thead>
+    <div class="mytable">
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
                     <tr>
                         <th></th>
                         <th>نام انبار</th>
                     </tr>
-                    </thead>
-                </table>
-            </div>
-            <div class="tbl-content">
-                <table cellpadding="0" cellspacing="0" border="0">
-                    <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                </thead>
+            </table>
         </div>
-
-    </section>
-
-
-    <!-- follow me template -->
-    <div class="made-with-love">
-        Made with
-        <i>♥</i> by
-        <a target="_blank" href="https://codepen.io/nikhil8krishnan">Nikhil Krishnan</a>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    <tr>
+                        {% if list %}
+                        {% for item in list %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+</section>
 
 {% endblock %}

@@ -43,12 +43,16 @@
             <div class="tbl-content">
                 <table cellpadding="0" cellspacing="0" border="0">
                     <tbody>
+                        {% if list %}
+                        {% for item in list %}
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>
                     </tr>
+                    {% endfor %}
+                    {% endif %}
                     </tbody>
                 </table>
             </div>
@@ -77,12 +81,5 @@
 
     </section>
 
-
-    <!-- follow me template -->
-    <div class="made-with-love">
-        Made with
-        <i>♥</i> by
-        <a target="_blank" href="https://codepen.io/nikhil8krishnan">Nikhil Krishnan</a>
-    </div>
 
 {% endblock %}

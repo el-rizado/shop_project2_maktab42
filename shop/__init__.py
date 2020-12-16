@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template
-
+from shop.db import p_list, s_list
 
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
@@ -29,9 +29,14 @@ def create_app(test_config=None):
     # except OSError:
     #     pass
 
-    @app.route("/hello")
-    def hello():
-        return render_template('./management/products.html')
+    @app.route("/product")
+    def product():
+        return render_template('./management/products.html',list=p_list)
+        
+       
+    @app.route("/store")
+    def store():
+        return render_template('./management/stores.html',list=s_list)
 
     @app.route("/index")
     def index():
