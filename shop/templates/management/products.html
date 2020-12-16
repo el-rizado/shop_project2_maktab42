@@ -1,0 +1,73 @@
+{% extends './management/base.html' %}
+<title>{% block title %}کالا ها{% endblock %}</title>
+
+{% block page_css_link %}
+    <link rel="stylesheet" href="../../static/management/products.css">
+{% endblock %}
+
+{% block page_js_link %}
+    <script src="../../static/management/product.js"></script>
+{% endblock %}
+
+
+{% block products_btn %}
+    <button
+            type="button"
+            class="btn btn-outline-secondary bg-dark  text-white"
+    >
+        کالا ها
+    </button>
+{% endblock %}
+
+{% block content %}
+    <section>
+        <!--for demo wrap-->
+        <div class="onvan">
+            <h1>مدیریت کالا ها</h1>
+            <button type="button" id="mojodi" class="btn btn-success">افزودن کالا</button>
+        </div>
+
+        <div class="mytable">
+            <div class="tbl-header">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>دسته بندی</th>
+                        <th>نام کالا</th>
+                        <th>تصویر</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tbl-content">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="import_block">
+            <button type="button" id="brows" class="btn btn-success">به روز رسانی جدول</button>
+            <div class="file-upload-wrapper">
+                <input type="file" id="input-file-now" class="file-upload"/>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- follow me template -->
+    <div class="made-with-love">
+        Made with
+        <i>♥</i> by
+        <a target="_blank" href="https://codepen.io/nikhil8krishnan">Nikhil Krishnan</a>
+    </div>
+
+{% endblock %}
