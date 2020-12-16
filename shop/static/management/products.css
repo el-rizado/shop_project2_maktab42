@@ -1,7 +1,7 @@
 
 .onvan{
   font-size: 30px;
-  color: #fff;
+  color: #0f7aab;
   text-transform: uppercase;
   font-weight: 300;
   margin-bottom: 15px;
@@ -50,8 +50,8 @@ td{
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 body{
-  background: -webkit-linear-gradient(left, #727572, #97acac);
-  background: linear-gradient(to right, #727572, #97acac);
+  background: -webkit-linear-gradient(left, #073358, #001F3E);
+  background: linear-gradient(to right, #073358, #001f3e);
   font-family: 'Roboto', sans-serif;
 }
 section{
@@ -59,7 +59,7 @@ section{
 }
 .import_block{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-top: 50px;
 }
 
@@ -100,4 +100,84 @@ section{
 }
 ::-webkit-scrollbar-thumb {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+#brows{
+  height: 50px;
+  margin: 30px;
+  background-color:#457B9D;
+}
+#dropFileForm {
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+#dropFileForm #fileLabel {
+  background-color: #FFC312;
+  display: block;
+  padding: 16px;
+  position: relative;
+  cursor: pointer;
+  opacity: .5;
+}
+
+#dropFileForm #fileInput {
+  display: none;
+}
+
+#dropFileForm #fileLabel:after,
+#dropFileForm #fileLabel:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: -2;
+  border-radius: 8px 8px 0 0;
+}
+
+#dropFileForm #fileLabel:before {
+  z-index: -1;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5%,
+    black 5%,
+    black 10%
+  );
+  opacity: 0;
+  transition: 0.5s;
+}
+
+#dropFileForm.fileHover #fileLabel:before {
+  opacity: 0.25;
+}
+
+#dropFileForm .uploadButton {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  padding: 8px;
+  background-color: #457B9D;
+  color: #001F3E
+  cursor: pointer;
+}
+
+#dropFileForm.fileHover {
+  box-shadow: 0 0 16px #457B9D;
+  color: #001F3E
+}
+#mojodi{
+  background-color:#457B9D ;
+  color: #001F3E
+}
+.uploadButton{
+  background-color: #457B9D;
+  color: #001F3E
+}
+#fileLabelText{
+  color:#001F3E ;
 }

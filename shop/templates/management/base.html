@@ -43,7 +43,8 @@
                 {% block orders_btn %}
                     <button
                         type="button"
-                        class="btn btn-outline-secondary bg-secondary text-white"
+                        class="btn btn-outline-secondary topbtn"
+                        id="topbtn"
                     >
                         سفارش ها
                     </button>
@@ -51,7 +52,8 @@
                 {% block IP_btn %}
                     <button
                         type="button"
-                        class="btn btn-outline-secondary bg-secondary text-white"
+                        class="btn btn-outline-secondary topbtn"
+                        id="topbtn"
                     >
                         موجودی و قیمت ها
                     </button>
@@ -59,7 +61,8 @@
                 {% block store_btn %}
                 <button
                     type="button"
-                    class="btn btn-outline-secondary bg-secondary text-white"
+                    class="btn btn-outline-secondary topbtn"
+                    id="topbtn"
                 >
                     انبارها
                 </button>
@@ -67,13 +70,14 @@
                 {% block products_btn %}
                 <button
                     type="button"
-                    class="btn btn-outline-secondary bg-secondary text-white"
+                    class="btn btn-outline-secondary topbtn"
+                    id="topbtn"
                 >
                     کالاها
                 </button>
                 {% endblock %}
             </div>
-            <div class="nav_h text-light bg-secondary">
+            <div class="nav_h">
                 پنل مدیریت فروشگاه
             </div>
         </div>
@@ -82,4 +86,5 @@
     {% block content %}{% endblock %}
 
 </body>
+
 </html>
