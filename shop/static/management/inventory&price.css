@@ -7,10 +7,10 @@
   margin-bottom: 15px;
   text-align: right;
   display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
 }
-#mojodi{
-  justify-content: left;
-}
+
 table{
   width:100%;
   table-layout: fixed;
