@@ -1,6 +1,24 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, session
+from logging.config import dictConfig
+
+
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://flask.logging.wsgi_errors_stream',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'INFO',
+        'handlers': ['wsgi']
+    }
+})
 
 
 def create_app(test_config=None):
@@ -31,11 +49,15 @@ def create_app(test_config=None):
 
     @app.route("/hello")
     def hello():
+        app.logger.info("hello is up")
+        app.logger.info(session)
         return "Hello, World!"
 
-    @app.route("/index")
+    @app.route("/index", methods=["GET", "POST"])
     def index():
+        app.logger.info("index func called")
         return render_template('login.html')
+        # return redirect(url_for('login'))
 
     # register the database commands
     # from flaskr import db
@@ -53,5 +75,4 @@ def create_app(test_config=None):
     # app.route, while giving the blog blueprint a url_prefix, but for
     # the tutorial the blog will be the main index
     app.add_url_rule("/", endpoint="index")
-
     return app
