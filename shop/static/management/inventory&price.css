@@ -1,86 +1,72 @@
-
-.onvan{
-  font-size: 30px;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 300;
-  margin-bottom: 15px;
-  text-align: right;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row-reverse;
+section{
+  position: relative;
+  margin: 0;
+}
+.onvan {
+    font-size: 35px;
+    color: #2d2c2c;
+    text-transform: uppercase;
+    font-weight: 350;
+    margin-bottom: 15px;
+    text-align: right;
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
 }
 
+#img_bg{
+    width: 100%;
+    position: absolute;
+    object-fit: cover;
+    height: inherit;
+    opacity: 0.7;
+}
+#mojodi {
+    background-color: #2397ba;
+    border-color: #0f110f;
+    height: 45px;
+    width: 110px;
+    color: #0f110f;
+}
 table{
   width:100%;
   table-layout: fixed;
 }
 .tbl-header{
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(18, 14, 13, 0.87);
+  position: relative;
  }
 .tbl-content{
   height:300px;
   overflow-x:auto;
   margin-top: 0px;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgb(198, 197, 197);
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 th{
   padding: 20px 15px;
   text-align: right;
   font-weight: 500;
-  font-size: 12px;
-  color: #000;
+  font-size: 24px;
+  color: #9dd8eb;
   text-transform: uppercase;
 }
 td{
   padding: 15px;
   text-align: right;
   vertical-align:middle;
-  font-weight: 300;
-  font-size: 12px;
-  color: #000;
-  border-bottom: solid 1px rgba(255,255,255,0.1);
-  border-right: solid 1px rgba(255,255,255,0.3);
+  font-weight: 400;
+  font-size: 20px;
+  color: #f9c076;
+  border-bottom: solid 1px rgb(198, 197, 197);
+  border-right: solid 1px rgb(198, 197, 197);
 
 }
 
-
-/* demo styles */
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-body{
-  background: -webkit-linear-gradient(left, #727572, #97acac);
-  background: linear-gradient(to right, #727572, #97acac);
-  font-family: 'Roboto', sans-serif;
-}
 section{
   margin: 50px;
-}
-
-
-/* follow me template */
-.made-with-love {
-  margin-top: 40px;
-  padding: 10px;
-  clear: left;
-  text-align: center;
-  font-size: 10px;
-  font-family: arial;
-  color: #fff;
-}
-.made-with-love i {
-  font-style: normal;
-  color: #F50057;
-  font-size: 14px;
-  position: relative;
-  top: 2px;
-}
-.made-with-love a {
-  color: #fff;
-  text-decoration: none;
-}
-.made-with-love a:hover {
-  text-decoration: underline;
 }
 
 

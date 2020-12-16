@@ -5,22 +5,12 @@
     <link rel="stylesheet" href="../../static/management/inventory&price.css">
 {% endblock %}
 
-
-{% block IP_btn %}
-    <button
-            type="button"
-            class="btn btn-outline-secondary bg-dark  text-white"
-    >
-        موجودی و قیمت ها
-    </button>
-{% endblock %}
-
 {% block content %}
     <section>
         <!--for demo wrap-->
         <div class="onvan">
             <h1>مدیریت موجودی ها و قیمت ها</h1>
-            <button type="button" id="mojodi" class="btn btn-success">افزودن موجودی</button>
+            <button type="button" id="mojodi">افزودن موجودی</button>
 
         </div>
         <div class="tbl-header">
@@ -50,13 +40,4 @@
             </table>
         </div>
     </section>
-
-
-    <!-- follow me template -->
-    <div class="made-with-love">
-        Made with
-        <i>♥</i> by
-        <a target="_blank" href="https://codepen.io/nikhil8krishnan">Nikhil Krishnan</a>
-    </div>
-
 {% endblock %}
