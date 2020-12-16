@@ -7,7 +7,7 @@ img{
     position: absolute;
     object-fit: cover;
     height: inherit;
-    opacity: 0.5;
+    opacity: 1;
 }
 #nav-item{
     width: 100%;
