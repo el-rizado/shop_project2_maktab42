@@ -29,6 +29,11 @@ def create_app(test_config=None):
     # except OSError:
     #     pass
 
+    @app.route('/hello')
+    def hell0():
+        return 'Hello World!'
+
+
     @app.route("/product")
     def product():
         return render_template('./management/products.html',list=p_list)
@@ -38,9 +43,20 @@ def create_app(test_config=None):
     def store():
         return render_template('./management/stores.html',list=s_list)
 
+
+    @app.route("/inv_pri")
+    def inv_pri():
+        return render_template('./management/inventory_price.html')
+        
+       
+    @app.route("/order")
+    def order():
+        return render_template('./management/orders.html')
+
+
     @app.route("/index")
     def index():
-        return render_template('login.html')
+        return render_template('main_page.html')
 
     # register the database commands
     # from flaskr import db
