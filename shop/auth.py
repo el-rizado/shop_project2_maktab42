@@ -88,13 +88,15 @@ def load_logged_in_user():
 #     return render_template("auth/register.html")
 
 
-@bp.route("/login", methods=("GET", "POST"))
+@bp.route("/login", methods=["GET", "POST"])
 def login():
     """Log in a registered user by adding the user id to the session."""
+    print(request)
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
         db = get_db()
+
         error = None
         # with db:
         #     with db.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as curs:
@@ -110,6 +112,7 @@ def login():
         try:
             if db[username] != password:
                 error = 'incorrect password'
+                current_app.logger.info("incorrect password")
         except KeyError:
             error = "incorrect username"
 
@@ -118,11 +121,15 @@ def login():
             session.clear()
             # session["user_id"] = user["id"]
             session["user_id"] = db['id']
+            print(session)
+            current_app.logger.info(session)
+            current_app.logger.info("redirect to hello func")
             return redirect(url_for("hello"))
-
         flash(error)
 
-    return render_template("login.html")
+    else:
+        current_app.logger.info("rendering login template")
+        return render_template("login.html")
 
 
 # @bp.route("/logout")
