@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <head>
     <title>{% block title %}{% endblock %} - shop</title>
+        <link rel="stylesheet" href="../static/base.css">
+
     {% block page_css_link %}{% endblock %}
 </head>
 <body>
-    <nav>
-        <div class="nav_items">
+    <header>
+        <div class="header_items">
             <div class="header_link">
                 <div class="cart btn">
-                    <a class="inner_link" href="#">سبد خرید</a>
+                    <a class="cart_link" href="#">سبد خرید</a>
                     <img
                             class="cart_img"
                             src="../static/cart.png"
@@ -32,8 +34,21 @@
               </a>
             </div>
         </div>
+    </header>
+    <nav>
+        <ul class="nav_items">
+            <li>دسته اول</li>
+            <li>دسته دوم</li>
+            <li>دسته سوم</li>
+            <li>دسته چهارم</li>
+            <li>دسته پنجم</li>
+
+        </ul>
     </nav>
-    <div class="container">{% block content %}{% endblock %}</div>
+    <div class="main">
+    <div class="container" id="container">{% block content %}{% endblock %}</div>
     <aside>{% block sidebar %}{% endblock %}</aside>
+    </div>
     <footer></footer>
+{% block page_script_link %}{% endblock %}
 </body>
