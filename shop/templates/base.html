@@ -1,22 +1,54 @@
-<!doctype html>
-<title>{% block title %}{% endblock %} - shop</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-  <h1>shop</h1>
-  <ul>
-    {% if g.user %}
-      <li><span>{{ g.user['username'] }}</span>
-    {% else %}
-      <li><a href="{{ url_for('auth.login') }}">Log In</a>
-    {% endif %}
-  </ul>
-</nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</section>
+<!DOCTYPE html>
+<head>
+    <title>{% block title %}{% endblock %} - shop</title>
+        <link rel="stylesheet" href="../static/base.css">
+
+    {% block page_css_link %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="header_items">
+            <div class="header_link">
+                <div class="cart btn">
+                    <a class="cart_link" href="#">سبد خرید</a>
+                    <img
+                            class="cart_img"
+                            src="../static/cart.png"
+                            alt="cart"
+                    />
+                </div>
+                <div>
+                    <a
+                        class="inner_link management"
+                        href="{{ url_for('product') }}"
+                        >مدیریت</a
+                    >
+                </div>
+            </div>
+            <div class="banner">
+                <a class="inner_link shop_name" href="url_for('main_page')"
+                    >فروشگاه مکتب</a
+                >
+                <a class="icon_link" href="">
+                <img class="icon" src="../static/logo.png" alt="icon" />
+              </a>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <ul class="nav_items">
+            <li>دسته اول</li>
+            <li>دسته دوم</li>
+            <li>دسته سوم</li>
+            <li>دسته چهارم</li>
+            <li>دسته پنجم</li>
+
+        </ul>
+    </nav>
+    <div class="main">
+    <div class="container" id="container">{% block content %}{% endblock %}</div>
+    <aside>{% block sidebar %}{% endblock %}</aside>
+    </div>
+    <footer></footer>
+{% block page_script_link %}{% endblock %}
+</body>

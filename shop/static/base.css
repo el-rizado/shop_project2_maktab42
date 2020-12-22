@@ -1,0 +1,133 @@
+@font-face {
+    font-family: "Samim";
+    src: url("https://cdn.fontcdn.ir/Font/Persian/Samim/Samim.eot");
+    src: url("https://cdn.fontcdn.ir/Font/Persian/Samim/Samim.eot?#iefix")
+            format("embedded-opentype"),
+        url("https://cdn.fontcdn.ir/Font/Persian/Samim/Samim.woff")
+            format("woff"),
+        url("https://cdn.fontcdn.ir/Font/Persian/Samim/Samim.ttf")
+            format("truetype");
+    font-weight: normal;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Samim;
+}
+
+header {
+    height: 90px;
+    background-color: rgb(255, 153, 0);
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.header_link {
+    width: 25%;
+    height: inherit;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.header_items {
+    width: 90%;
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+}
+.cart {
+    height: inherit;
+    display: flex;
+    align-items: center;
+}
+.cart_img {
+    height: 100%;
+    filter: invert(0.5);
+}
+.cart_link {
+    text-decoration: none;
+    color: rgb(36, 214, 0);
+}
+.inner_link {
+    text-decoration: none;
+    color: rgb(0, 46, 199);
+}
+.btn {
+    height: 45px;
+    border-radius: 10px;
+    padding: 7px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.1);
+    transition: cubic-bezier(.68,-0.55,.27,1.55);}
+.btn:active{
+    box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.15);
+
+}
+.btn:hover {
+    cursor: pointer;
+}
+.banner {
+    height: inherit;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.shop_name {
+    font-size: 30px;
+}
+.icon_link {
+    height: inherit;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.icon {
+    height: 75%;
+}
+
+nav{
+    height: 60px;
+    background-color: rgba(255, 238, 0, 0.897);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.nav_items{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.main{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(161, 161, 161, 0.658);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .management {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    .management {
+        display: none;
+    }
+    .inner_link {
+        display: none;
+    }
+}

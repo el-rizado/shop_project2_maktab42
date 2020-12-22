@@ -1,0 +1,47 @@
+{% extends './base.html' %}
+
+{% block title %}super market{% endblock %}
+
+{% block page_css_link %}
+<link rel="stylesheet" href="../static/main_page.css">
+{% endblock %}
+
+{% block content %}
+    <div id='sample_box' class="pr_box">
+        <div class="info">
+            <label class="name"></label>
+            <label class="price"></label>
+            <button>
+                <img class="cart" src="../static/picture/cart.png" alt="cart">
+            </button>
+        </div>
+        <img class="pr" src="" alt="" />
+    </div>
+{% endblock %}
+
+
+
+{% block sidebar %}
+<ul>
+    <ul>
+        <li>دسته بندی یک</li>
+        <li>دسته بندی دو</li>
+        <li>دسته بندی سه</li>
+        <li>دسته بندی چهار</li>
+        <li>دسته بندی پنج</li>
+        <li>دسته بندی شش</li>
+    </ul>
+    <ul>
+        <li>دسته بندی یک</li>
+        <li>دسته بندی دو</li>
+        <li>دسته بندی سه</li>
+        <li>دسته بندی چهار</li>
+        <li>دسته بندی پنج</li>
+        <li>دسته بندی شش</li>
+    </ul>
+</ul>
+{% endblock %}
+
+{% block page_script_link %}
+<script src="../static/main.js"></script>
+{% endblock %}
