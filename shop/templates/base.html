@@ -36,14 +36,16 @@
         </div>
     </header>
     <nav>
-        <ul class="nav_items">
-            <li>دسته اول</li>
-            <li>دسته دوم</li>
-            <li>دسته سوم</li>
-            <li>دسته چهارم</li>
-            <li>دسته پنجم</li>
-
-        </ul>
+            {% if categories_key %}
+                <ul class="nav_items">
+                    <li>{{ categories_key[0] }}</li>
+                    <li>{{ categories_key[1] }}</li>
+                    <li>{{ categories_key[2] }}</li>
+                    <li>{{ categories_key[3] }}</li>
+                    <li>{{ categories_key[4] }}</li>
+                    <li>{{ categories_key[5] }}</li>
+                </ul>
+        {% endif %}
     </nav>
     <div class="main">
     <div class="container" id="container">{% block content %}{% endblock %}</div>
