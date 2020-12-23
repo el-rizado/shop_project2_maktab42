@@ -1,4 +1,5 @@
 import pymongo
+import random
 
 myclient = pymongo.MongoClient()
 mydb = myclient["shop"]
@@ -12,16 +13,29 @@ for x in mycat.find():
 
 
 mystore = mydb["stores"]
-print(type(mystore))
 
-cursor = mystore.aggregate([
-                    {'$unwind': {"$items"}},
-                    {'$match': {"items.name": "Galaxy A51 SM-A515F/DSN 128GB"}},
-                    {'$group': {'_id': "items.name", 'mymin': {'$min': "$items.price"}}}
-])
-for document in cursor:
-          print(document)
-          print("--------------------------------------------------------------------------------------")
+cursor = mystore.find({}, {"items": 1, "_id": 0})
+
+# cursor1 = mystore.aggregate([
+#                     {'$unwind': '$items'},
+#                     {'$match': {"items.category": "دیجیتال.موبایل"}},
+#                     {'$group': {'_id': "items.name", 'mymin': {'$min': "$items.price"}}}
+# ])
+# for i in cursor:
+#     print(i)
+goods_of_store1_item = cursor[0]
+goods_of_store1 = goods_of_store1_item["items"]
+goods_of_store1 = random.choices(goods_of_store1, k=35)
+
+# set_of_categories = set()
+# for item in goods_of_store1:
+#     set_of_categories.add(item["category"])
+
+# for i in set_of_categories:
+#    for item in goods_of_store1:
+#        if item["category"] == i:
+#            print(item)
+#            break
 
 
 
@@ -43,155 +57,3 @@ s_list = [
     [1, 'شاپ۱'], [2, 'شاپ2'], [3, 'شاپ3'], [4, 'شاپ4']
 ]
 
-# categories = {
-#     "دیجیتال": ["موبایل", "لپتاپ", "تبلت", "دوربین", "کنسول بازی"],
-#     "پوشاک": ["کفش", "کیف", "کلاه", "شلوار", "کت", "هودی", "پیرهن", "پالتو", "مانتو", "دامن"],
-#     "مواد غذایی": ["کالاهای اساسی", "حبوبات", "لبنیات", "پروتئین", "نوشیدنی", "میوه و سبزی", "تنقلات", "کنسرو"],
-#     "زیبایی و سلامت": ["آرایشی", "بهداشتی", "الکتریکی شخصی", "عطر"],
-#     "ورزشی": ["پوشاک ورزشی", "لوازم ورزشی", "تجهیزات سفر"],
-#     "لوازم التحریر": ["نوشت افزار", "کوله و جامدادی", "ابزار نقاشی", "ابزار طراحی مهندسی", " دفتر و کاغذ"],
-# }
-goods = [
-    {"name": "کفش راحتي مردانه نايکي مدل m4",
-     "category": "لباس-کفش",
-     "price": 199000,
-     "quantity": 2,
-     "brand": "nike",
-     "pic_id": 1
-     },
-    {"name": "کفش فوتسال مردانه نايکي مدل 001",
-     "category": "لباس-کفش",
-     "price": 319000,
-     "quantity": 4,
-     "brand": "nike",
-     "pic_id": 2
-     },
-    {
-        "name": "Playstation 4 Pro CUH 7216B",
-        "category": "ديجيتال.کنسول_بازي",
-        "price": 17999000,
-        "quantity": 10,
-        "brand": "سوني",
-        "pic_id": 50
-    },
-    {
-        "name": "برنچ طارم هاشمي ممتاز طبيعت",
-        "category": "مواد_غذايي.کالاهاي_اساسي",
-        "price": 396000,
-        "quantity": 50,
-        "brand": "طبيعت",
-        "pic_id": 51
-    },
-    {
-        "name": "روغن ذرت غنچه",
-        "category": "مواد_غذايي.کالاهاي_اساسي",
-        "price": 66000,
-        "quantity": 50,
-        "brand": "غنچه",
-        "pic_id": 52
-    },
-    {
-        "name": "پودر شکر قنادي",
-        "category": "مواد_غذايي.کالاهاي_اساسي",
-        "price": 10920,
-        "quantity": 498,
-        "brand": "ضامن",
-        "pic_id": 53
-    },
-    {
-        "name": "شير پاستوريزه کم چرب",
-        "category": "مواد_غذايي.لبنيات",
-        "price": 8000,
-        "quantity": 98,
-        "brand": "پاک",
-        "pic_id": 54
-    },
-    {
-        "name": "پنير پيتزا رنده شده",
-        "category": "مواد_غذايي.لبنيات",
-        "price": 39990,
-        "quantity": 283,
-        "brand": "206",
-        "pic_id": 55
-    },
-    {
-        "name": "ماست سون پر چرب",
-        "category": "مواد_غذايي.لبنيات",
-        "price": 36500,
-        "quantity": 167,
-        "brand": "سون",
-        "pic_id": 56
-    },
-    {
-        "name": "سينه مرغ بي استخوان مهيا پروتئين",
-        "category": "مواد_غذايي.مواد_پروتئيني",
-        "price": 47280,
-        "quantity": 200,
-        "brand": "مهيا پروتئين",
-        "pic_id": 57
-    },
-    {
-        "name": "گوشت نگيني استامبولي گوساله",
-        "category": "مواد_غذايي.مواد_پروتئيني",
-        "price": 51280,
-        "quantity": 84,
-        "brand": "مهيا پروتئين",
-        "pic_id": 58
-    },
-    {
-        "name": "تخم مرغ سوباتان",
-        "category": "مواد_غذايي.مواد_پروتئيني",
-        "price": 31500,
-        "quantity": 100,
-        "brand": "سوباتان",
-        "pic_id": 59
-    },
-    {
-        "name": "عدس ريز",
-        "category": "مواد_غذايي.حبوبات",
-        "price": 35000,
-        "quantity": 359,
-        "brand": "همدل",
-        "pic_id": 60
-    },
-    {
-        "name": "سويا زرين دانه زنگبار",
-        "category": "مواد_غذايي.حبوبات",
-        "price": 7500,
-        "quantity": 489,
-        "brand": "زرين دانه زنگبار",
-        "pic_id": 61
-    },
-    {
-        "name": "نخود سياه ارگانيک آبگينه",
-        "category": "مواد_غذايي.حبوبات",
-        "price": 52500,
-        "quantity": 98,
-        "brand": "آبگينه",
-        "pic_id": 62
-    },
-    {
-        "name": "ماءالشعير کلاسيک جوجو",
-        "category": "مواد_غذايي.نوشيدني",
-        "price": 63000,
-        "quantity": 185,
-        "brand": "جوجو",
-        "pic_id": 63
-    },
-    {
-        "name": "دانه قهوه بلک اند وايت قهوه ست",
-        "category": "مواد_غذايي.نوشيدني",
-        "price": 56000,
-        "quantity": 80,
-        "brand": "قهوه ست",
-        "pic_id": 64
-    },
-    {
-        "name": "نوشابه انرژي زا ام اف پي هايپ",
-        "category": "مواد_غذايي.نوشيدني",
-        "price": 15320,
-        "quantity": 120,
-        "brand": "هايپ",
-        "pic_id": 65
-    }
-]
