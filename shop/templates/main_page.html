@@ -1,0 +1,49 @@
+{% extends './base.html' %}
+
+{% block title %}super market{% endblock %}
+
+{% block page_css_link %}
+    <link rel="stylesheet" href="../static/main_page.css">
+{% endblock %}
+
+{% block content %}
+    {% if Goods %}
+        {% for item in Goods %}
+            <div id='sample_box' class="pr_box">
+                <div class="info">
+                    <label class="name">{{ item["name"] }}</label>
+                    <label class="price">{{ item["price"] }}</label>
+                    <button>
+                        <img class="cart" src="../static/picture/cart.png" alt="cart">
+                    </button>
+                </div>
+                <img class="pr" src="../static/database/pics/{{ '%d' %item["pic_id"] }}.jpg" alt=""/>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+
+{% block sidebar %}
+    <ul>
+        {% if categories_key and categories %}
+            {% for item in categories_key %}
+                <ul>
+                <li>
+                    {{ item }}
+                    {% for a in categories[item] %}
+                    <ul>
+                        <li>
+                            {{ a }}
+                        </li>
+                    </ul>
+                    {% endfor %}
+                </li>
+                </ul>
+                <br>
+            {% endfor %}
+        {% endif %}
+    </ul>
+{% endblock %}
+

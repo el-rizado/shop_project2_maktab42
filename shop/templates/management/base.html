@@ -19,8 +19,8 @@
     <label aria-hidden="true" for="toggle"><i class="fas fa-bars"></i></label>
     <input aria-hidden="true" name="toggle" id="toggle" type="checkbox">
     <ul>
-        <li><a class="link" href="#">سفارش ها</a></li>
-        <li><a class="link" href="#">موجودی و قیمت ها </a></li>
+        <li><a class="link" href="{{ url_for('order') }}">سفارش ها</a></li>
+        <li><a class="link" href="{{ url_for('inv_pri') }}">موجودی و قیمت ها </a></li>
         <li><a class="link" href="{{ url_for('store') }}">انبار ها </a></li>
         <li><a class="link" href="{{ url_for('product') }}">کالا ها</a></li>
     </ul>

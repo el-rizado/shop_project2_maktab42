@@ -1,6 +1,4 @@
-import os
 
-from flask import Flask, render_template, redirect, url_for, session
 from logging.config import dictConfig
 
 
@@ -20,6 +18,8 @@ dictConfig({
     }
 })
 
+from flask import Flask, render_template
+from shop.db import p_list, s_list, categories, goods_of_store1
 
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
@@ -47,17 +47,37 @@ def create_app(test_config=None):
     # except OSError:
     #     pass
 
-    @app.route("/hello")
-    def hello():
-        app.logger.info("hello is up")
-        app.logger.info(session)
-        return "Hello, World!"
 
-    @app.route("/index", methods=["GET", "POST"])
+    @app.route('/hello')
+    def hell0():
+        return 'Hello World!'
+
+
+    @app.route("/product")
+    def product():
+        return render_template('./management/products.html',list=p_list)
+        
+       
+    @app.route("/store")
+    def store():
+        return render_template('./management/stores.html',list=s_list)
+
+
+    @app.route("/inv_pri")
+    def inv_pri():
+        return render_template('./management/inventory_price.html')
+        
+       
+    @app.route("/order")
+    def order():
+        return render_template('./management/orders.html')
+
+
+    @app.route("/index")
     def index():
-        app.logger.info("index func called")
-        return render_template('login.html')
-        # return redirect(url_for('login'))
+        return render_template('main_page.html', categories_key=list(categories.keys()),
+                               categories=categories,
+                               Goods=goods_of_store1)
 
     # register the database commands
     # from flaskr import db
