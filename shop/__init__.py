@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template
-from shop.db import p_list, s_list, categories
+from shop.db import p_list, s_list, categories, goods
 
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
@@ -56,7 +56,9 @@ def create_app(test_config=None):
 
     @app.route("/index")
     def index():
-        return render_template('main_page.html', categories_key=list(categories.keys()), categories=categories)
+        return render_template('main_page.html', categories_key=list(categories.keys()),
+                               categories=categories,
+                               Goods=goods)
 
     # register the database commands
     # from flaskr import db
