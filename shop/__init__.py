@@ -57,7 +57,7 @@ def create_app(test_config=None):
 	
     @app.route('/login')
     def login():
-        return render_template('./login')
+        return render_template('./login.html')
 	
 		
     @app.route("/product")
