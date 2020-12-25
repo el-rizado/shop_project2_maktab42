@@ -20,6 +20,8 @@ dictConfig({
 
 from flask import Flask, render_template
 from shop.db import p_list, s_list, categories, goods_of_store1
+from shop.auth import login_required
+
 
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
@@ -51,24 +53,33 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hell0():
         return 'Hello World!'
-
-
+	
+	
+    @app.route('/login')
+    def login():
+        return render_template('./login')
+	
+		
     @app.route("/product")
+    @login_required
     def product():
         return render_template('./management/products.html',list=p_list)
         
        
     @app.route("/store")
+    @login_required
     def store():
         return render_template('./management/stores.html',list=s_list)
 
 
     @app.route("/inv_pri")
+    @login_required
     def inv_pri():
         return render_template('./management/inventory_price.html')
         
        
     @app.route("/order")
+    @login_required
     def order():
         return render_template('./management/orders.html')
 
