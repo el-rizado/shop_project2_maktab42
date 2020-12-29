@@ -25,6 +25,7 @@
 
 
 
+
 {% block sidebar %}
     <ul>
         {% if categories_key and categories %}
@@ -46,4 +47,6 @@
         {% endif %}
     </ul>
 {% endblock %}
+{% block page_script_link %}<script src="../static/main_page.js"></script>{% endblock %}
+
 
