@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title>{% block title %}{% endblock %} - shop</title>
-        <link rel="stylesheet" href="../static/base.css">
+    <link rel="stylesheet" href="../static/base.css" />
 
     {% block page_css_link %}{% endblock %}
 </head>
@@ -11,11 +11,7 @@
             <div class="header_link">
                 <div class="cart btn">
                     <a class="cart_link" href="#">سبد خرید</a>
-                    <img
-                            class="cart_img"
-                            src="../static/cart.png"
-                            alt="cart"
-                    />
+                    <img class="cart_img" src="../static/cart.png" alt="cart" />
                 </div>
                 <div>
                     <a
@@ -30,27 +26,26 @@
                     >فروشگاه مکتب</a
                 >
                 <a class="icon_link" href="">
-                <img class="icon" src="../static/logo.png" alt="icon" />
-              </a>
+                    <img class="icon" src="../static/logo.png" alt="icon" />
+                </a>
             </div>
         </div>
     </header>
+    {% if categories_key %}
     <nav>
-            {% if categories_key %}
-                <ul class="nav_items">
-                    <li>{{ categories_key[0] }}</li>
-                    <li>{{ categories_key[1] }}</li>
-                    <li>{{ categories_key[2] }}</li>
-                    <li>{{ categories_key[3] }}</li>
-                    <li>{{ categories_key[4] }}</li>
-                    <li>{{ categories_key[5] }}</li>
-                </ul>
-        {% endif %}
+        <ul class="nav_items">
+            {% for cat in categories_key %}
+            <li>{{ cat }}</li>
+            {% endfor %}
+        </ul>
     </nav>
+    {% endif %}
     <div class="main">
-    <div class="container" id="container">{% block content %}{% endblock %}</div>
-    <aside>{% block sidebar %}{% endblock %}</aside>
+        <div class="container" id="container">
+            {% block content %}{% endblock %}
+        </div>
+        <aside>{% block sidebar %}{% endblock %}</aside>
     </div>
     <footer></footer>
-{% block page_script_link %}{% endblock %}
+    {% block page_script_link %}{% endblock %}
 </body>

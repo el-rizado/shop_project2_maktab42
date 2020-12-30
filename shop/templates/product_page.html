@@ -1,0 +1,45 @@
+{% extends './base.html' %} {% block title %}{% endblock %} {% block
+page_css_link %}
+<link rel="stylesheet" href="../static/product_page.css" />
+{% endblock %} {% block content %} {% if item %}
+
+<div class="item_info">
+    <img
+        class="item_img"
+        src="../static/database/pics/{{ '%d' %item['pic_id'] }}.jpg"
+        alt=""
+    />
+    <div class="info">
+        <h1 class="item_name">{{ item["name"] }}</h1>
+        <h2 class="item_price">قیمت: {{ item["price"] }}</h2>
+        <div class="add_cart">
+            <div class="counter">
+                <select name="count" id="count">
+                    {% for count in range(10) %}
+                    <option>{{count}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+                <button class="add_button">
+                    <img
+                        class="cart"
+                        src="../static/picture/cart.png"
+                        alt="cart"
+                    />
+                </button>
+        </div>
+    </div>
+</div>
+<div class="item_description">
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus inventore
+        vero autem alias corporis illo ex, nulla, ab mollitia at laboriosam quo
+        culpa ipsam nobis. Id ab consequuntur aspernatur repellendus. Lorem
+        ipsum dolor sit amet, consectetur adipisicing elit. Sequi ad accusamus
+        commodi, voluptate quod dolores quibusdam sed voluptates obcaecati? Non
+        perferendis ad adipisci architecto blanditiis, commodi aspernatur nobis
+        tenetur. Libero.
+    </p>
+</div>
+
+{% endif %} {% endblock %}
