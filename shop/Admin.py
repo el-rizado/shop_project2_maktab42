@@ -1,20 +1,13 @@
 import functools
-import psycopg2.extras
+from flask import Blueprint, current_app, flash, g, redirect, render_template, request, session, url_for
+from shop.db import s_list, p_list
+from shop.db import get_db
 
-from flask import Blueprint, current_app
-from flask import flash
-from flask import g
-from flask import redirect
-from flask import render_template
-from flask import request
-from flask import session
-from flask import url_for
 # from werkzeug.security import check_password_hash
 # from werkzeug.security import generate_password_hash
 
-from shop.db import get_db
 
-bp = Blueprint("auth", __name__, url_prefix="/auth")
+bp = Blueprint("Admin", __name__, url_prefix="/Admin")
 
 
 def login_required(view):
@@ -23,7 +16,7 @@ def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
-            return redirect(url_for("auth.login"))
+            return redirect(url_for("Admin.login"))
 
         return view(**kwargs)
 
@@ -124,7 +117,7 @@ def login():
             print(session)
             current_app.logger.info(session)
             current_app.logger.info("redirect to hello func")
-            return redirect(url_for("hello"))
+            return redirect(url_for("Admin.orders"))
         flash(error)
 
     else:
@@ -137,3 +130,27 @@ def login():
 #     """Clear the current session, including the stored user id."""
 #     session.clear()
 #     return redirect(url_for("index"))
+
+
+@bp.route("/warehouses")
+@login_required
+def warehouses():
+    return render_template('./management/warehouses.html', list=s_list)
+
+
+@bp.route("/products")
+@login_required
+def products():
+    return render_template('./management/products.html', list=p_list)
+
+
+@bp.route("/quantities")
+@login_required
+def quantities():
+    return render_template('./management/quantities.html')
+
+
+@bp.route("/orders")
+@login_required
+def orders():
+    return render_template('./management/orders.html')

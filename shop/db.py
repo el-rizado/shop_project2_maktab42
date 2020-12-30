@@ -3,7 +3,17 @@ import random
 
 myclient = pymongo.MongoClient()
 mydb = myclient["shop"]
+
 mycat = mydb["categories"]
+mystore = mydb["stores"]
+myproducts = mydb["products"]
+
+
+prod = []
+cursor3 = myproducts.find()
+for i in cursor3:
+    prod.append(i)
+
 
 categories = {}
 
@@ -12,33 +22,17 @@ for x in mycat.find():
     categories = x.copy()
 
 
-mystore = mydb["stores"]
+
 
 cursor = mystore.find({}, {"items": 1, "_id": 0})
 
-# cursor1 = mystore.aggregate([
-#                     {'$unwind': '$items'},
-#                     {'$match': {"items.category": "دیجیتال.موبایل"}},
-#                     {'$group': {'_id': "items.name", 'mymin': {'$min': "$items.price"}}}
-# ])
-# for i in cursor:
-#     print(i)
-goods_of_store1_item = cursor[0]
-goods_of_store1 = goods_of_store1_item["items"]
-goods_of_store1 = random.choices(goods_of_store1, k=35)
-
-# set_of_categories = set()
-# for item in goods_of_store1:
-#     set_of_categories.add(item["category"])
-
-# for i in set_of_categories:
-#    for item in goods_of_store1:
-#        if item["category"] == i:
-#            print(item)
-#            break
-
-
-
+# goods_of_store1_item = cursor[0]
+# goods_of_store1 = goods_of_store1_item["items"]
+# goods_of_store1 = random.choices(goods_of_store1, k=35)
+# print(goods_of_store1[0])
+goods_of_store1 = []
+for product in prod:
+    goods_of_store1.append(product)
 
 def get_db():
     db = {
