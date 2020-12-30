@@ -9,10 +9,10 @@
 {% block content %}
     {% if Goods %}
         {% for item in Goods %}
-            <div id='sample_box' class="pr_box">
+            <div id='sample_box' class="pr_box"  onclick="myFunction({{ item }})">
                 <div class="info">
                     <label class="name">{{ item["name"] }}</label>
-                    <label class="price">{{ item["price"] }}</label>
+                    <label class="price">{{ 0 }}</label>
                     <button>
                         <img class="cart" src="../static/picture/cart.png" alt="cart">
                     </button>

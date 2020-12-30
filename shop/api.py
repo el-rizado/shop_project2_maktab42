@@ -1,12 +1,19 @@
+import json
+
+from bson import json_util
 from flask import Blueprint, jsonify, request
 from shop.db import goods_of_store1
 
 bp = Blueprint("api", __name__, url_prefix="/api")
 
 
+def parse_json(data):
+    return json.loads(json_util.dumps(data))
+
+
 @bp.route('/product/list', methods=['GET'])
 def prod_list():
-    return jsonify(goods_of_store1)
+    return jsonify(parse_json(goods_of_store1))
 
 
 @bp.route('/product/', methods=['GET'])
@@ -80,7 +87,6 @@ def quantity_delete():
 @bp.route('/order/list', methods=['GET'])
 def order_list():
     return 'order_list'
-
 
 
 @bp.route('/order/', methods=['GET'])

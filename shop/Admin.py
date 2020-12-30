@@ -117,7 +117,7 @@ def login():
             print(session)
             current_app.logger.info(session)
             current_app.logger.info("redirect to hello func")
-            return redirect(url_for("Admin.order"))
+            return redirect(url_for("Admin.orders"))
         flash(error)
 
     else:
