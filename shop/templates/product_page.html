@@ -1,7 +1,14 @@
-{% extends './base.html' %} {% block title %}{% endblock %} {% block
-page_css_link %}
+{% extends './base.html' %}
+
+
+{% block page_css_link %}
 <link rel="stylesheet" href="../static/product_page.css" />
-{% endblock %} {% block content %} {% if item %}
+{% endblock %}
+
+{% if item %}
+
+{% block title %}{{ item["name"] }}{% endblock %}
+{% block content %}
 
 <div class="item_info">
     <img
@@ -42,4 +49,5 @@ page_css_link %}
     </p>
 </div>
 
-{% endif %} {% endblock %}
+{% endblock %}
+{% endif %}

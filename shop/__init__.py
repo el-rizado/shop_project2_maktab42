@@ -63,6 +63,23 @@ def create_app(test_config=None):
     @app.route('/itemID')
     def itemID():
         return render_template('./product_page.html', item=goods_of_store1[0])
+    
+    my_order=[
+        [100000,
+        4,
+        25000,
+        'something'],
+        [9000,
+        1,
+        9000,
+        'nothing']
+    ]
+
+    total = sum((item[0] for item in my_order))
+
+    @app.route('/purchase')
+    def purchase():
+        return render_template('./purchase.html', order=my_order, total=total)
 
 
     @app.route("/product")

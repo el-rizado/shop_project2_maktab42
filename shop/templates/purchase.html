@@ -1,0 +1,38 @@
+{% extends './base.html' %} 
+{% block page_css_link %}
+<link rel="stylesheet" href="../static/purchase.css" />
+{% endblock %}
+
+{% if order %}
+{% block title %}
+{% endblock %}
+{% block content %}
+
+<h1 class="title">سبد خرید</h1>
+<div class="table">
+<table>
+    <tr>
+        <th></th>
+        <th>بها</th>
+        <th>تعداد</th>
+        <th>فی</th>
+        <th>کالا</th>
+    </tr>
+    {% for item in order %}
+        <tr>
+        <td><span> ویرایش </span><span> حذف </span></td>
+        <td>{{ item[0] }}</td>
+        <td>{{ item[1] }}</td>
+        <td>{{ item[2] }}</td>
+        <td>{{ item[3] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<div class="sum">
+    <button>نهایی کردن سبد خرید</button>
+    <span>جمع {{ total }} تومان</span>
+</div>
+</div>
+
+{% endblock %} 
+{% endif %}
