@@ -1,19 +1,16 @@
-{% extends './base.html' %}
-
 {% block title %}super market{% endblock %}
 
 {% block page_css_link %}
-    <link rel="stylesheet" href="../static/main_page.css">
+    <link rel="stylesheet" href="../static/category_page.css">
 {% endblock %}
 
 {% block content %}
-{% for item in categories_key %}
+{% for item in category_key %}
 	<h1> {{ item['key'] }} </h1>
 
 
-{% set counter = 0 %}
         {% for pr in item['goods'] %}
-        {% set counter = counter + 1 %}
+
             <div id='sample_box' class="pr_box">
                 <div class="info">
                     <label class="name">{{ pr["name"] }}</label>
@@ -24,18 +21,12 @@
                 </div>
                 <img class="pr" src="../static/database/pics/{{ '%d' %pr["pic_id"] }}.jpg" alt=""/>
             </div>
-           {% if counter = 6 %}
-           {% break %}
-           {% endif %}
+
         {% endfor %}
 
 
 {% endfor %}
-
-
-
 {% endblock %}
-
 
 
 {% block sidebar %}
@@ -59,4 +50,3 @@
         {% endif %}
     </ul>
 {% endblock %}
-

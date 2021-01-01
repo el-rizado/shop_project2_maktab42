@@ -80,6 +80,12 @@ def create_app(test_config=None):
     @app.route('/purchase')
     def purchase():
         return render_template('./purchase.html', order=my_order, total=total)
+    
+    
+    @app.route('/fin_pur')
+    def fin_pur():
+        return render_template('./fin_pur.html')
+
 
 
     @app.route("/product")
@@ -97,7 +103,7 @@ def create_app(test_config=None):
     @app.route("/inv_pri")
     @login_required
     def inv_pri():
-        return render_template('./management/inventory_price.html')
+        return render_template('./management/Inventory_price.html')
 
 
     @app.route("/order")
