@@ -1,20 +1,24 @@
 from logging.config import dictConfig
+from flask import Flask, render_template
+from shop.db import p_list, s_list, categories, goods_of_store1
+from shop.auth import login_required
 
 dictConfig({
     'version': 1,
     'formatters': {'default': {
-        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
     }},
     'handlers': {'wsgi': {
-        'class': 'logging.StreamHandler',
-        'stream': 'ext://flask.logging.wsgi_errors_stream',
-        'formatter': 'default'
+    'class': 'logging.StreamHandler',
+    'stream': 'ext://flask.logging.wsgi_errors_stream',
+    'formatter': 'default'
     }},
     'root': {
-        'level': 'INFO',
-        'handlers': ['wsgi']
+    'level': 'INFO',
+    'handlers': ['wsgi']
     }
-})
+    })
+
 
 from flask import Flask, render_template
 from shop.db import p_list, s_list, categories, goods_of_store1
@@ -25,8 +29,14 @@ def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        # a default secret that should be overridden by instance config
-        SECRET_KEY="dev",
+
+    # a default secret that should be overridden by instance config
+    SECRET_KEY="dev",
+    # store the database in the instance folder
+    # DATABASE=os.path.join(app.instance_path, "flaskr.sqlite"),
+    # DATABASE={"name": "flaskr",
+    #           "username": "postgres",
+    #           "password": "postgres"},
 
     )
 
@@ -46,7 +56,6 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         return 'Hello World!'
-
 
     # register the database commands
     # from flaskr import db
