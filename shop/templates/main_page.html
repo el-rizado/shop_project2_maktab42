@@ -12,24 +12,22 @@
 	<h1> {{ item['key'] }} </h1>
 
 
-{% set counter = 0 %}
-        {% for pr in item['goods'] %}
-        {% set counter = counter + 1 %}
-            <div id='sample_box' class="pr_box" onclick="myFunction({{ item }})">
-                <div class="info">
-                    <label class="name">{{ pr["name"] }}</label>
-                    <label class="price">{{ pr["price"] }}</label>
+	{% set counter = 0 %}
+	{% for pr in item['goods'] %}
+		{% set counter = counter + 1 if counter <= 6 %}
+		<div id='sample_box' class="pr_box" onclick="myFunction({{ pr }})">
+		<div class="info">
+		<label class="name">{{ pr["name"] }}</label>
+		<label class="price">{{ pr["price"] }}</label>
 
-                    <button>
-                        <img class="cart" src="../static/picture/cart.png" alt="cart">
-                    </button>
-                </div>
-                <img class="pr" src="../static/database/pics/{{ '%d' %pr["pic_id"] }}.jpg" alt=""/>
-            </div>
-           {% if counter = 6 %}
-           {% break %}
-           {% endif %}
-        {% endfor %}
+		<button>
+		<img class="cart" src="../static/picture/cart.png" alt="cart">
+		</button>
+		</div>
+		<img class="pr" src="../static/database/pics/{{ '%d' %pr["pic_id"] }}.jpg" alt=""/>
+		</div>
+
+	{% endfor %}
 
 
 {% endfor %}

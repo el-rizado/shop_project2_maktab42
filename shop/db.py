@@ -4,9 +4,9 @@ import random
 myclient = pymongo.MongoClient()
 mydb = myclient["shop"]
 
-mycat = mydb["categories"]
+
 mystore = mydb["stores"]
-myproducts = mydb["products"]
+
 
 
 prod = []
@@ -16,12 +16,33 @@ for i in cursor3:
 
 
 categories = {}
-
 for x in mycat.find():
     x.pop("_id")
     categories = x.copy()
 
+class Product:
+	def __init__(self):
+		self.collection = mydb["products"]
+	
+	def get_product_by_cat(self, cat):
+		return list(self.collection.find({"category" : cat}))
+	
 
+class categories:
+	def __init__(self):
+		self.my_cat = list(mydb["categories"].find({}, {"_id": 0}))[0]
+	
+	def get_category(self):
+		return self.my_cat.keys()
+		
+	def get_sub_category(self):
+		return self.my_cat.values()
+		
+	def get_object(self):
+		return self.my_cat
+
+
+product.x
 
 
 cursor = mystore.find({}, {"items": 1, "_id": 0})

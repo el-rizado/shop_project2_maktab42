@@ -1,7 +1,7 @@
 from logging.config import dictConfig
 from flask import Flask, render_template
 from shop.db import p_list, s_list, categories, goods_of_store1
-from shop.auth import login_required
+from shop.Admin import login_required
 
 dictConfig({
     'version': 1,
