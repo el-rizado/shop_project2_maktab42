@@ -24,20 +24,21 @@ class Product:
     def get_product_by_cat(self, cat):
         prod = self.collection.aggregate([{"$match": {"category.1": cat}}])
         return list(prod)
+        
+    def get_all(self):
+        return list(self.collection.find())
 
-p = Product()
-a = p.get_product_by_cat("لباس")
-print(a)
 
-class categories:
+
+class Categories:
     def __init__(self):
         self.my_cat = list(mydb["categories"].find({}, {"_id": 0}))[0]
 
     def get_category(self):
         return self.my_cat.keys()
 
-    def get_sub_category(self):
-        return self.my_cat.values()
+    def get_sub_category(self, cat):
+        return self.my_cat[cat]
 
     def get_object(self):
         return self.my_cat

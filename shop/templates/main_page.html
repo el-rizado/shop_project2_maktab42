@@ -8,17 +8,19 @@
 
 {% block content %}
 
-{% for item in categories_key %}
-	<h1> {{ item['key'] }} </h1>
+{% for cat in categories_key %}
+	<h1> {{ cat }} </h1>
 
 
-	{% set counter = 0 %}
-	{% for pr in item['goods'] %}
-		{% set counter = counter + 1 if counter <= 6 %}
+
+	{% for pr in goods_in_cat[cat] %}
+
+		{% if loop.index <= 6 %}
+
 		<div id='sample_box' class="pr_box" onclick="myFunction({{ pr }})">
 		<div class="info">
 		<label class="name">{{ pr["name"] }}</label>
-		<label class="price">{{ pr["price"] }}</label>
+		<label class="price">{{ pr["price"][0]["price"] }}</label>
 
 		<button>
 		<img class="cart" src="../static/picture/cart.png" alt="cart">
@@ -26,7 +28,7 @@
 		</div>
 		<img class="pr" src="../static/database/pics/{{ '%d' %pr["pic_id"] }}.jpg" alt=""/>
 		</div>
-
+		{% endif %}
 	{% endfor %}
 
 
@@ -41,15 +43,15 @@
 
 {% block sidebar %}
     <ul>
-        {% if categories_key and categories %}
-            {% for item in categories_key %}
+
+			{% for cat in categories_key %}
                 <ul>
                 <li>
-                    {{ item['key'] }}
-                    {% for a in categories[item['key']] %}
+                    {{ cat }}
+                    {% for sub in categories[cat] %}
                     <ul>
                         <li>
-                            {{ a }}
+                            {{ sub }}
                         </li>
                     </ul>
                     {% endfor %}
@@ -57,7 +59,7 @@
                 </ul>
                 <br>
             {% endfor %}
-        {% endif %}
+
     </ul>
 {% endblock %}
 {% block page_script_link %}<script src="../static/main_page.js"></script>{% endblock %}
