@@ -4,45 +4,44 @@ import random
 myclient = pymongo.MongoClient()
 mydb = myclient["shop"]
 
-
 mystore = mydb["stores"]
 
+# prod = []
+# cursor3 = myproducts.find()
+# for i in cursor3:
+#     prod.append(i)
 
+# categories = {}
+# for x in mycat.find():
+#     x.pop("_id")
+#     categories = x.copy()
 
-prod = []
-cursor3 = myproducts.find()
-for i in cursor3:
-    prod.append(i)
-
-
-categories = {}
-for x in mycat.find():
-    x.pop("_id")
-    categories = x.copy()
 
 class Product:
-	def __init__(self):
-		self.collection = mydb["products"]
-	
-	def get_product_by_cat(self, cat):
-		return list(self.collection.find({"category" : cat}))
-	
+    def __init__(self):
+        self.collection = mydb["products"]
+
+    def get_product_by_cat(self, cat):
+        prod = self.collection.aggregate([{"$match": {"category.1": cat}}])
+        return list(prod)
+
+p = Product()
+a = p.get_product_by_cat("لباس")
+print(a)
 
 class categories:
-	def __init__(self):
-		self.my_cat = list(mydb["categories"].find({}, {"_id": 0}))[0]
-	
-	def get_category(self):
-		return self.my_cat.keys()
-		
-	def get_sub_category(self):
-		return self.my_cat.values()
-		
-	def get_object(self):
-		return self.my_cat
+    def __init__(self):
+        self.my_cat = list(mydb["categories"].find({}, {"_id": 0}))[0]
 
+    def get_category(self):
+        return self.my_cat.keys()
 
-product.x
+    def get_sub_category(self):
+        return self.my_cat.values()
+
+    def get_object(self):
+        return self.my_cat
+
 
 
 cursor = mystore.find({}, {"items": 1, "_id": 0})
@@ -51,9 +50,10 @@ cursor = mystore.find({}, {"items": 1, "_id": 0})
 # goods_of_store1 = goods_of_store1_item["items"]
 # goods_of_store1 = random.choices(goods_of_store1, k=35)
 # print(goods_of_store1[0])
-goods_of_store1 = []
-for product in prod:
-    goods_of_store1.append(product)
+# goods_of_store1 = []
+# for product in prod:
+#     goods_of_store1.append(product)
+
 
 def get_db():
     db = {
@@ -71,4 +71,3 @@ p_list = [
 s_list = [
     [1, 'شاپ۱'], [2, 'شاپ2'], [3, 'شاپ3'], [4, 'شاپ4']
 ]
-

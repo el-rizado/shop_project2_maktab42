@@ -63,7 +63,7 @@ for i in quantity_list():
 
 
 cats=[]
-y=coll_products.find({},{"_id":0,"category": 1 })
+y= coll_products.find({},{"_id":0,"category": 1 })
 for i in y:
     c=i["category"]
     if not c in cats:
