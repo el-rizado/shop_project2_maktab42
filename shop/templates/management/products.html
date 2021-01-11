@@ -23,10 +23,11 @@
                 <table cellpadding="0" cellspacing="0" border="0">
                     <thead>
                     <tr>
-                        <th></th>
-                        <th>دسته بندی</th>
-                        <th>نام کالا</th>
+                    	<th>عملیات</th>
                         <th>تصویر</th>
+                        <th>نام کالا</th>
+                        <th>دسته بندی</th>
+                        <th>ردیف</th>
                     </tr>
                     </thead>
                 </table>
@@ -34,13 +35,14 @@
             <div class="tbl-content">
                 <table cellpadding="0" cellspacing="0" border="0">
                     <tbody>
-                        {% if list %}
-                        {% for item in list %}
+                        {% if my_list %}
+                        {% for item in my_list %}
                     <tr>
-                        <td>{{ item[0] }}</td>
-                        <td>{{ item[1] }}</td>
-                        <td>{{ item[2] }}</td>
-                        <td>{{ item[3] }}</td>
+                    	<td></td>
+                        <td><div class="pic_column"><img class="pr" src="../static/database/pics/{{ '%d' %item['pic_id'] }}.jpg"/></div></td>
+                        <td>{{ item['name'] }}</td>
+                        <td>{{ item['category'][1] }}/{{ item['category'][0] }}</td>
+                        <td>{{ loop.index }}</td>
                     </tr>
                     {% endfor %}
                     {% endif %}

@@ -1,11 +1,18 @@
+
 import json
+from bson import json_util, ObjectId
+from flask import Blueprint, jsonify, request, redirect, render_template
+from shop.db import Categories, Products, Orders, Stores
 
-from bson import json_util
-from flask import Blueprint, jsonify, request
 
+my_product = Products()
+my_categories = Categories()
+my_orders = Orders()
+my_stores = Stores()
 
 bp = Blueprint("api", __name__, url_prefix="/api")
 
+print('____________', my_product.get_by_id(ObjectId('5fe9e24604edc9d1a8a5a3c4')))
 
 def parse_json(data):
     return json.loads(json_util.dumps(data))
@@ -20,9 +27,10 @@ def prod_list():
 def prod_details():
     query_parameters = request.args
     id = query_parameters.get('id')
-    print(f'klk;kl{id}')
-    return "id"
+    return render_template('./product_page.html', item=my_product.get_by_id(ObjectId(id)))
 
+#   return redirect('./product_page.html')
+#	return redirect(url_for('api/product', email=x, listOfObjects=y))
 
 @bp.route('/product/add', methods=['GET'])
 def prod_add():

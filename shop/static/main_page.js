@@ -1,7 +1,14 @@
+function httpGet(theUrl)
+	{
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+	xmlHttp.send( null );
+	return xmlHttp.responseText;
+	}
+
 function myFunction(elmnt) {
-  console.log(elmnt);
   kala = elmnt._id
-  console.log(kala.$oid);
-  console.log("/api/product?id=" + kala.$oid)
-  window.location.replace("/api/product?id=" + kala.$oid)
+  httpGet("/api/product?id=" + kala.$oid)
 }
+
+

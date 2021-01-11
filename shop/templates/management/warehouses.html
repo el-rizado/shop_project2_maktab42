@@ -22,8 +22,9 @@
             <table cellpadding="0" cellspacing="0" border="0">
                 <thead>
                     <tr>
-                        <th></th>
+                    	<th>عملیات</th>
                         <th>نام انبار</th>
+                        <th>ردیف</th>
                     </tr>
                 </thead>
             </table>
@@ -32,11 +33,12 @@
             <table cellpadding="0" cellspacing="0" border="0">
                 <tbody>
                     <tr>
-                        {% if list %}
-                        {% for item in list %}
+                        {% if my_list %}
+                        {% for item in my_list %}
                     <tr>
-                        <td>{{ item[0] }}</td>
-                        <td>{{ item[1] }}</td>
+                    	<td></td>
+                        <td>{{ item['name'] }}</td>
+                        <td>{{ loop.index }}</td>
                     </tr>
                     {% endfor %}
                     {% endif %}

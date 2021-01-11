@@ -1,10 +1,15 @@
 import functools
 from flask import Blueprint, current_app, flash, g, redirect, render_template, request, session, url_for
-from shop.db import s_list, p_list
+from shop.db import Categories, Products, Orders, Stores
 from shop.db import get_db
 
 # from werkzeug.security import check_password_hash
 # from werkzeug.security import generate_password_hash
+
+my_products = Products()
+my_categories = Categories()
+my_orders = Orders()
+my_stores = Stores()
 
 
 bp = Blueprint("Admin", __name__, url_prefix="/Admin")
@@ -135,13 +140,13 @@ def login():
 @bp.route("/warehouses")
 @login_required
 def warehouses():
-    return render_template('./management/warehouses.html', list=s_list)
+    return render_template('./management/warehouses.html', my_list=my_stores.ware_list())
 
 
 @bp.route("/products")
 @login_required
 def products():
-    return render_template('./management/products.html', list=p_list)
+    return render_template('./management/products.html', my_list=my_products.get_all())
 
 
 @bp.route("/quantities")
