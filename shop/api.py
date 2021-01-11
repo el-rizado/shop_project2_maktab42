@@ -2,7 +2,7 @@ import json
 
 from bson import json_util
 from flask import Blueprint, jsonify, request
-from shop.db import goods_of_store1
+
 
 bp = Blueprint("api", __name__, url_prefix="/api")
 

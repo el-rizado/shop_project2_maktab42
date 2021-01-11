@@ -1,7 +1,13 @@
 from bson import json_util
 from flask import Blueprint, render_template, jsonify
-from shop.db import categories, goods_of_store1
+from shop.db import Categories, Product
 import json
+
+my_product = Product()
+my_categories = Categories()
+
+print({cat: my_product.get_product_by_cat(cat) for cat in my_categories.get_category()})
+print(my_product.get_product_by_cat("ديجيتال"))
 bp = Blueprint("store", __name__)
 
 def parse_json(data):
@@ -9,9 +15,10 @@ def parse_json(data):
 
 @bp.route("/")
 def index():
-    return render_template('main_page.html', categories_key=list(categories.keys()),
-                           categories=categories,
-                           Goods=parse_json(goods_of_store1))
+    return render_template('main_page.html', categories_key=my_categories.get_category(),
+                           categories={cat: my_categories.get_sub_category(cat) for cat in my_categories.get_category()},
+                           goods_in_cat = {cat: my_product.get_product_by_cat(cat) for cat in my_categories.get_category()},
+                           Goods=parse_json(my_product.get_all()))
 
 
 @bp.route('/category', methods=['GET'])
@@ -32,3 +39,6 @@ def cart():
 @bp.route('/cart/approve', methods=['GET'])
 def approve():
     return jsonify(goods_of_store1)
+
+
+
