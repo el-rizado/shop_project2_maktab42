@@ -3,7 +3,6 @@ import random
 
 myclient = pymongo.MongoClient()
 mydb = myclient["shop"]
-
 mystore = mydb["stores"]
 
 # prod = []
@@ -25,13 +24,41 @@ class Product:
         prod = self.collection.aggregate([{"$match": {"category.1": cat}}])
         return list(prod)
 
-p = Product()
-a = p.get_product_by_cat("لباس")
-print(a)
+    def prod_list(self):
+        prodlist = [i for i in self.collection.find({}, {"_id": 0, "name": 1, "category": 1, "price": 1, "brand": 1})]
+        return prodlist
+
+    def prod_details(self,id):
+        myquery = {"pic_id": id}
+        proddetails = [i for i in self.collection.find(myquery)]
+        return proddetails
+
+    def prod_add(self,name, cat, st_id, qu, price, brand, pic_id):
+        dic = {"name": name,
+               "category": cat,
+               "price": [{"store_id": st_id,
+                          "quantity": qu,
+                          "price": price}],
+               "brand": brand,
+               "pic_id": pic_id}
+        self.collection.insert_one(dic)
+
+    def prod_delete(self,id):
+        myquery = {"pic_id": id}
+        self.collection.delete_one(myquery)
+
+    def by_cat(self,cat):
+        query1 = {"category": cat}
+        x = self.collection.find(query1)
+        l = []
+        for i in x:
+            l.append(i)
+        return l
 
 class categories:
     def __init__(self):
-        self.my_cat = list(mydb["categories"].find({}, {"_id": 0}))[0]
+        self.collection=mydb["categories"]
+        self.my_cat = list(self.collection.find({}, {"_id": 0}))[0]
 
     def get_category(self):
         return self.my_cat.keys()
@@ -41,6 +68,33 @@ class categories:
 
     def get_object(self):
         return self.my_cat
+
+class stores:
+    def __init__(self):
+        self.collection=mydb["stores"]
+
+    def ware_list(self):
+        return [i for i in self.collection.find({}, {"_id": 0, "name": 1})]
+
+    def ware_add(self,dic):
+        self.collection.insert_one(dic)
+    def ware_delete(self,name):
+        myquery={"name":name}
+        self.collection.delete_one(myquery)
+
+    def quantity_list(self):
+        pipeline = [{"$unwind": "$price"},
+                    {"$project": {"_id": 0}},
+                    {"$group": {"_id": "$name", "quantity": {"$sum": "$price.quantity"}}}]
+        return [i for i in self.collection.aggregate(pipeline)]
+class order:
+    def __init__(self):
+        self.collection=mydb["orders"]
+    def order_add(self,name,items):              #items=[{kala:panir,gheymat:12200,tedad:1},{kala:medad,gheymat:...}
+        dic={"نام و نام خانوادگی" : name,
+             "کالاها" : items
+        }
+        self.collection.insert_one(dic)
 
 
 
