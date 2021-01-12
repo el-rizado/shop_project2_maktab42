@@ -49,11 +49,11 @@
 			{% for cat in categories_key %}
                 <ul>
                 <li>
-                    {{ cat }}
+                    <a href="{{ url_for('store.category') }}?cat={{ cat }}">{{ cat }}</a>
                     {% for sub in categories[cat] %}
                     <ul>
                         <li>
-                            {{ sub }}
+                            <a href="{{ url_for('store.subcat') }}?cat={{ sub }}">{{ sub }}</a>
                         </li>
                     </ul>
                     {% endfor %}

@@ -1,5 +1,5 @@
 from bson import json_util
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template, jsonify, request
 from shop.db import Categories, Products, Orders, Stores
 import json
 
@@ -20,13 +20,22 @@ def parse_json(data):
 def index():
     return render_template('main_page.html', categories_key=my_categories.get_category(),
                            categories={cat: my_categories.get_sub_category(cat) for cat in my_categories.get_category()},
-                           goods_in_cat = {cat: parse_json(my_product.get_product_by_cat(cat)) for cat in my_categories.get_category()},
+                           goods_in_cat = {cat: parse_json(my_product.get_by_cat(cat)) for cat in my_categories.get_category()},
                            )
 
 
 @bp.route('/category', methods=['GET'])
 def category():
-    return jsonify(categories)
+    cat = request.args.get('cat')
+    items = my_product.get_by_cat(cat)
+    return render_template('./category_page.html', item=items)
+
+
+@bp.route('/subcat', methods=['GET'])
+def subcat():
+    cat = request.args.get('cat')
+    items = my_product.get_by_subcat(cat)
+    return render_template('./category_page.html', item=items)
 
 
 @bp.route('/product/goods', methods=['GET'])

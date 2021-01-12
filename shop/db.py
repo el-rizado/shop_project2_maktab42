@@ -3,18 +3,6 @@ import random
 
 myclient = pymongo.MongoClient()
 mydb = myclient["shop"]
-mystore = mydb["stores"]
-
-
-# prod = []
-# cursor3 = myproducts.find()
-# for i in cursor3:
-#     prod.append(i)
-
-# categories = {}
-# for x in mycat.find():
-#     x.pop("_id")
-#     categories = x.copy()
 
 
 class Products:
@@ -24,10 +12,14 @@ class Products:
     def get_all(self):
         return list(self.collection.find())
 
-    def get_product_by_cat(self, cat):
+    def get_by_cat(self, cat):
         prod = self.collection.aggregate([{"$match": {"category.1": cat}}])
         return list(prod)
-
+        
+    def get_by_subcat(self, cat):
+        prod = self.collection.aggregate([{"$match": {"category.0": cat}}])
+        return list(prod)
+        
     def prod_list(self):
         prodlist = [i for i in self.collection.find({}, {"_id": 0, "name": 1, "category": 1, "price": 1, "brand": 1})]
         return prodlist
@@ -51,13 +43,6 @@ class Products:
         myquery = {"pic_id": id}
         self.collection.delete_one(myquery)
 
-    def by_cat(self, cat):
-        query1 = {"category": cat}
-        x = self.collection.find(query1)
-        l = []
-        for i in x:
-            l.append(i)
-        return l
 
     def quantity_list(self):
         pipeline = [{"$unwind": "$price"},
@@ -111,16 +96,6 @@ class Orders:
                }
         self.collection.insert_one(dic)
 
-
-# cursor = mystore.find({}, {"items": 1, "_id": 0})
-
-# goods_of_store1_item = cursor[0]
-# goods_of_store1 = goods_of_store1_item["items"]
-# goods_of_store1 = random.choices(goods_of_store1, k=35)
-# print(goods_of_store1[0])
-# goods_of_store1 = []
-# for product in prod:
-#     goods_of_store1.append(product)
 
 
 def get_db():

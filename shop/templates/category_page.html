@@ -5,24 +5,24 @@
 {% endblock %}
 
 {% block content %}
-{% for item in category_key %}
-	<h1> {{ item['key'] }} </h1>
+	<h1> </h1>
+{% for pr in item %}
 
 
-        {% for pr in item['goods'] %}
+        
 
             <div id='sample_box' class="pr_box">
                 <div class="info">
                     <label class="name">{{ pr["name"] }}</label>
-                    <label class="price">{{ pr["price"] }}</label>
+                    <label class="price">{{ pr["price"][0]['price'] }}</label>
                     <button>
                         <img class="cart" src="../static/picture/cart.png" alt="cart">
                     </button>
                 </div>
-                <img class="pr" src="../static/database/pics/{{ '%d' %pr["pic_id"] }}.jpg" alt=""/>
+                <img class="pr" src="../static/database/pics/{{ '%d' %pr['pic_id'] }}.jpg" alt=""/>
             </div>
 
-        {% endfor %}
+
 
 
 {% endfor %}

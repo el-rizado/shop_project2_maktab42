@@ -35,7 +35,7 @@
     <nav>
         <ul class="nav_items">
             {% for cat in categories_key %}
-            <li>{{ cat }}</li>
+            <li><a href="{{ url_for('store.category') }}?cat={{ cat }}">{{ cat }}</a></li>
             {% endfor %}
         </ul>
     </nav>
