@@ -10,20 +10,20 @@
 
 
 {% block content %}
-<script>0</script>
+
 <div class="item_info">
     <img
         class="item_img"
         src="../static/database/pics/{{ '%d' %item['pic_id'] }}.jpg"
-        alt="ddddd"
+
     />
     <div class="info">
         <h1 class="item_name">{{ item["name"] }}</h1>
-        <h2 class="item_price">قیمت: {{ item["price"] }}</h2>
+        <h2 class="item_price">قیمت: {{ item["price"][0]['price'] }}</h2>
         <div class="add_cart">
             <div class="counter">
                 <select name="count" id="count">
-                    {% for count in range(10) %}
+                    {% for count in range(10) if count < item['price'][0]['quantity'] %}
                     <option>{{count}}</option>
                     {% endfor %}
                 </select>

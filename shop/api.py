@@ -29,8 +29,6 @@ def prod_details():
     id = query_parameters.get('id')
     return render_template('./product_page.html', item=my_product.get_by_id(ObjectId(id)))
 
-#   return redirect('./product_page.html')
-#	return redirect(url_for('api/product', email=x, listOfObjects=y))
 
 @bp.route('/product/add', methods=['GET'])
 def prod_add():

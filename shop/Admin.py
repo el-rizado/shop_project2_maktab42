@@ -122,7 +122,7 @@ def login():
             print(session)
             current_app.logger.info(session)
             current_app.logger.info("redirect to hello func")
-            return redirect(url_for("Admin.orders"))
+            return redirect(url_for("Admin.management"))
         flash(error)
 
     else:
@@ -152,7 +152,7 @@ def products():
 @bp.route("/quantities")
 @login_required
 def quantities():
-    return render_template('./management/quantities.html')
+    return render_template('./management/quantities.html', my_list=my_stores.ware_quantity())
 
 
 @bp.route("/orders")
