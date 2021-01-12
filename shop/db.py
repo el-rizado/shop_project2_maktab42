@@ -5,6 +5,7 @@ myclient = pymongo.MongoClient()
 mydb = myclient["shop"]
 mystore = mydb["stores"]
 
+
 # prod = []
 # cursor3 = myproducts.find()
 # for i in cursor3:
@@ -19,7 +20,7 @@ mystore = mydb["stores"]
 class Products:
     def __init__(self):
         self.collection = mydb["products"]
-        
+
     def get_all(self):
         return list(self.collection.find())
 
@@ -36,7 +37,7 @@ class Products:
         proddetails = list(self.collection.find(myquery))[0]
         return proddetails
 
-    def prod_add(self,name, cat, st_id, qu, price, brand, pic_id):
+    def prod_add(self, name, cat, st_id, qu, price, brand, pic_id):
         dic = {"name": name,
                "category": cat,
                "price": [{"store_id": st_id,
@@ -50,7 +51,7 @@ class Products:
         myquery = {"pic_id": id}
         self.collection.delete_one(myquery)
 
-    def by_cat(self,cat):
+    def by_cat(self, cat):
         query1 = {"category": cat}
         x = self.collection.find(query1)
         l = []
@@ -58,10 +59,16 @@ class Products:
             l.append(i)
         return l
 
+    def quantity_list(self):
+        pipeline = [{"$unwind": "$price"},
+                    {"$project": {"_id": 0}},
+                    {"$group": {"_id": "$name", "quantity": {"$sum": "$price.quantity"}}}]
+        return (count for count in self.collection.aggregate(pipeline))
+
 
 class Categories:
     def __init__(self):
-        self.collection=mydb["categories"]
+        self.collection = mydb["categories"]
         self.my_cat = list(self.collection.find({}, {"_id": 0}))[0]
 
     def get_category(self):
@@ -76,34 +83,33 @@ class Categories:
 
 class Stores:
     def __init__(self):
-        self.collection=mydb["stores"]
+        self.collection = mydb["stores"]
 
     def ware_list(self):
         return (warehouse for warehouse in self.collection.find({}, {"name": 1}))
 
     def ware_add(self, dic):
         return self.collection.insert_one(dic)
-        
+
     def ware_delete(self, name):
-        myquery={"name":name}
+        myquery = {"name": name}
         self.collection.delete_one(myquery)
 
-    def quantity_list(self):
-        pipeline = [{"$unwind": "$price"},
-                    {"$project": {"_id": 0}},
-                    {"$group": {"_id": "$name", "quantity": {"$sum": "$price.quantity"}}}]
+    def ware_quantity(self, pic_id):
+        pipeline = [{"$unwind": "$items"}, {"$match": {"items.pic_id": pic_id}},
+                    {"$project": {"_id": 0, "items.name": 1, "items.quantity": 1}}]
         return (count for count in self.collection.aggregate(pipeline))
 
 
 class Orders:
     def __init__(self):
-        self.collection=mydb["orders"]
-    def order_add(self,name,items):              #items=[{kala:panir,gheymat:12200,tedad:1},{kala:medad,gheymat:...}
-        dic={"نام و نام خانوادگی" : name,
-             "کالاها" : items
-        }
-        self.collection.insert_one(dic)
+        self.collection = mydb["orders"]
 
+    def order_add(self, name, items):  # items=[{kala:panir,gheymat:12200,tedad:1},{kala:medad,gheymat:...}
+        dic = {"نام و نام خانوادگی": name,
+               "کالاها": items
+               }
+        self.collection.insert_one(dic)
 
 
 # cursor = mystore.find({}, {"items": 1, "_id": 0})
@@ -123,4 +129,3 @@ def get_db():
         'id': 1234
     }
     return db
-
