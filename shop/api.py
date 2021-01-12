@@ -10,7 +10,8 @@ my_categories = Categories()
 my_orders = Orders()
 my_stores = Stores()
 
-bp = Blueprint("api", __name__, url_prefix="/api")
+bp = Blueprint("api", __name__, url_prefix="/api",
+    static_folder='static')
 
 
 def parse_json(data):
