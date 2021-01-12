@@ -12,7 +12,6 @@ my_stores = Stores()
 
 bp = Blueprint("api", __name__, url_prefix="/api")
 
-print('____________', my_product.get_by_id(ObjectId('5fe9e24604edc9d1a8a5a3c4')))
 
 def parse_json(data):
     return json.loads(json_util.dumps(data))

@@ -159,3 +159,10 @@ def quantities():
 @login_required
 def orders():
     return render_template('./management/orders.html')
+
+
+
+@bp.route("/")
+@login_required
+def management():
+    return render_template('./management/base.html')
