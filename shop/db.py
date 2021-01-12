@@ -97,7 +97,7 @@ class Stores:
 
     def ware_quantity(self, pic_id):
         pipeline = [{"$unwind": "$items"}, {"$match": {"items.pic_id": pic_id}},
-                    {"$project": {"_id": 0, "items.name": 1, "items.quantity": 1}}]
+                    {"$project": {"_id": 0,"name":1, "items.name": 1, "items.quantity": 1}}]
         return (count for count in self.collection.aggregate(pipeline))
 
 
